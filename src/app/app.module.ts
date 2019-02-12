@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { FeatureModule } from './feature/feature.module';
-import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { AgGridModule } from 'ag-grid-angular';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,12 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     FeatureModule,
     HttpClientModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.circleSwish,
+      backdropBackgroundColour: 'rgba(0, 0, 0, 0.1)',
+      primaryColour: '#ff0000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

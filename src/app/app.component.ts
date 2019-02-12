@@ -10,6 +10,7 @@ import { AgGridNg2 } from 'ag-grid-angular';
 export class AppComponent implements OnInit {
     @ViewChild('agGrid') agGrid: AgGridNg2;
     title = 'app';
+    public loading = false;
 
     columnDefs = [
         {
@@ -38,8 +39,10 @@ export class AppComponent implements OnInit {
 
     }
 
-    ngOnInit() {
+    async ngOnInit() {
+      this.loading = true;  
       this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
+      this.loading = false;
     }
 
     getSelectedRows() {
