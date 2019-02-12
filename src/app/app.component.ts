@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
     @ViewChild('agGrid') agGrid: AgGridNg2;
     title = 'app';
     public loading = false;
+    value: Date;
 
     columnDefs = [
         {
