@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -25,6 +27,7 @@ import { FullCalendarModule } from 'primeng/fullcalendar';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    NgbModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
