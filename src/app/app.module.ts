@@ -15,6 +15,8 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 
+import { FullCalendarModule } from 'primeng/fullcalendar';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -35,7 +37,8 @@ import { CalendarModule } from 'primeng/calendar';
       primaryColour: '#ff0000'
     }),
     ButtonModule,
-    CalendarModule
+    CalendarModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

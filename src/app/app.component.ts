@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
     ];
 
     rowData: any;
+    events: any[];
 
     constructor(private http: HttpClient) {
 
@@ -44,6 +45,18 @@ export class AppComponent implements OnInit {
       this.loading = true;  
       this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
       this.loading = false;
+
+      this.events = [
+        {
+          "title": "All Day Event",
+          "start": "2019-02-02"
+        },
+        {
+          "title": "Long Event",
+          "start": "2019-02-05",
+          "end": "2019-02-07"
+        }
+      ]
     }
 
     getSelectedRows() {
