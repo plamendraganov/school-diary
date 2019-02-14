@@ -25,6 +25,7 @@
     "ag-grid-community": "^20.0.0",
     "core-js": "^2.5.4",
     "fullcalendar": "^4.0.0-alpha.2",
+    "ng2-pdf-viewer": "^5.2.3",
     "ngx-loading": "^3.0.1",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.5",

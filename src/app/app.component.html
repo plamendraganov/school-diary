@@ -23,6 +23,19 @@
 
 <p-calendar [(ngModel)]="value"></p-calendar>
 
+<div>
+  <label>PDF src</label>
+  <input type="text" placeholder="PDF src" [(ngModel)]="pdfSrc">
+</div>
+
+<div class="container">
+  <pdf-viewer [src]="pdfSrc"
+  [render-text]="true"
+  [page]="page"
+  [show-all]="false"
+  style="display: block;"></pdf-viewer>
+</div>
+
 <app-core></app-core>
 <app-shared></app-shared>
 <app-feature></app-feature>

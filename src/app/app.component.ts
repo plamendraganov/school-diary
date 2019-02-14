@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
     public loading = false;
     value: Date;
 
+    pdfSrc: string = "/assets/pdf-test.pdf";
+
     columnDefs = [
         {
           headerName: 'Make', 
