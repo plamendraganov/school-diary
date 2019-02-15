@@ -20,6 +20,7 @@ import { CalendarModule } from 'primeng/calendar';
 
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { GetPdfService } from './shared/services/get-pdf.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     PdfViewerModule
   ],
   providers: [
-    
+    GetPdfService
   ],
   bootstrap: [AppComponent]
 })
