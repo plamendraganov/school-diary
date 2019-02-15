@@ -46,7 +46,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FullCalendarModule,
     PdfViewerModule
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

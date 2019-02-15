@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AgGridNg2 } from 'ag-grid-angular';
+import { GetPdfService } from './shared/services/get-pdf.service';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
     public loading = false;
     value: Date;
 
-    pdfSrc: string = "/assets/pdf-test.pdf";
+    pdfSrc: string = '';
 
     columnDefs = [
         {
@@ -39,13 +40,14 @@ export class AppComponent implements OnInit {
     rowData: any;
     events: any[];
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private getPdfService: GetPdfService) {
 
     }
 
     async ngOnInit() {
       this.loading = true;  
       this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
+      this.pdfSrc = this.getPdfService.getPdf();
       this.loading = false;
 
       this.events = [
