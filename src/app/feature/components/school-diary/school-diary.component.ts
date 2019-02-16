@@ -11,6 +11,7 @@ import { BackOfficeService } from 'src/app/shared/services/back-office.service';
 export class SchoolDiaryComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridNg2;
 
+  loading = false;
   rowData: any;
   columnDefs = [
     {
@@ -37,7 +38,9 @@ export class SchoolDiaryComponent implements OnInit {
   constructor(private http: HttpClient, private backOfficeService: BackOfficeService) { }
 
   async ngOnInit() {
-    this.rowData = this.backOfficeService.getStudentsInClass();
+    this.loading = true;   
+    this.rowData = await this.backOfficeService.getStudentsInClass();
+    this.loading = false;
   }
 
   getSelectedRows() {
@@ -45,6 +48,10 @@ export class SchoolDiaryComponent implements OnInit {
     const selectedData = selectedNodes.map( node => node.data );
     const selectedDataStringPresentation = selectedData.map( node => node.firstName + ' ' + node.lastName).join(', ');
     alert(`Selected nodes: ${selectedDataStringPresentation}`);
+  }
+
+  addNewStudent() {
+    window.location.href = 'school-diary/new-student'
   }
 
 }

@@ -1,12 +1,16 @@
 <div class="container">
-  <button (click)="getSelectedRows()">Get Selected Rows</button>
   <ag-grid-angular
   #agGrid
-  style="width: 500px; height: 500px;" 
-    class="ag-theme-balham"
-    [rowData]="rowData | async" 
-    [columnDefs]="columnDefs"
-    rowSelection="multiple"
-    >
+  style="width: 100%; margin-top: 20px; margin-bottom: 20px;" 
+  class="ag-theme-balham"
+  [rowData]="rowData | async" 
+  [columnDefs]="columnDefs"
+  rowSelection="multiple"
+  >
   </ag-grid-angular>
+
+  <button class="btn btn-primary" (click)="addNewStudent()">Add New Student</button>
+  <!-- <button class="btn btn-info" (click)="getSelectedRows()">Get Selected Rows</button> -->
+
+  <ngx-loading [show]="loading"></ngx-loading>
 </div>

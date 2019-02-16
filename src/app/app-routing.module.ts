@@ -4,10 +4,12 @@ import { SchoolDiaryComponent } from './feature/components/school-diary/school-d
 import { HomePageComponent } from './feature/components/home-page/home-page.component';
 import { NotesComponent } from './feature/components/notes/notes.component';
 import { SchoolDiaryDetailsComponent } from './feature/components/school-diary-details/school-diary-details.component';
+import { AddNewStudentComponent } from './feature/components/add-new-student/add-new-student.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'school-diary', component: SchoolDiaryComponent },
+  { path: 'school-diary/new-student', component: AddNewStudentComponent },
   { path: 'school-diary/:id', component: SchoolDiaryDetailsComponent },
   { path: 'notes', component: NotesComponent }
 ];

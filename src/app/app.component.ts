@@ -11,34 +11,11 @@ import { GetPdfService } from './shared/services/get-pdf.service';
 export class AppComponent implements OnInit {
     @ViewChild('agGrid') agGrid: AgGridNg2;
     title = 'app';
-    public loading = false;
-    value: Date;
+    loading = false;
 
     pdfSrc: string = '';
 
-    columnDefs = [
-        {
-          headerName: 'Make', 
-          field: 'make', 
-          sortable: true, 
-          filter: true, 
-          checkboxSelection: true
-        },
-        {
-          headerName: 'Model', 
-          field: 'model', 
-          sortable: true, 
-          filter: true
-        },
-        {
-          headerName: 'Price', 
-          field: 'price', 
-          sortable: true, 
-          filter: true}
-    ];
-
-    rowData: any;
-    events: any[];
+  
 
     constructor(private http: HttpClient, private getPdfService: GetPdfService) {
 
@@ -46,20 +23,7 @@ export class AppComponent implements OnInit {
 
     async ngOnInit() {
       this.loading = true;  
-      this.rowData = this.http.get('https://api.myjson.com/bins/15psn9');
-      this.pdfSrc = this.getPdfService.getPdf();
+      this.pdfSrc = await this.getPdfService.getPdf();
       this.loading = false;
-
-      this.events = [
-        {
-          "title": "All Day Event",
-          "start": "2019-02-02"
-        },
-        {
-          "title": "Long Event",
-          "start": "2019-02-05",
-          "end": "2019-02-07"
-        }
-      ]
     }
 }

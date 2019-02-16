@@ -9,6 +9,6 @@ export class BackOfficeService {
   constructor(private http: HttpClient) { }
 
   getStudentsInClass() {
-    return this.http.get('https://api.myjson.com/bins/asedm');
+    return this.http.get('https://api.myjson.com/bins/pog7u');
   }
 }
