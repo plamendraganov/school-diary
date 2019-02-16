@@ -62,11 +62,4 @@ export class AppComponent implements OnInit {
         }
       ]
     }
-
-    getSelectedRows() {
-      const selectedNodes = this.agGrid.api.getSelectedNodes();
-      const selectedData = selectedNodes.map( node => node.data );
-      const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model).join(', ');
-      alert(`Selected nodes: ${selectedDataStringPresentation}`);
-    }
 }

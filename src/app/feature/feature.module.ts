@@ -9,12 +9,14 @@ import { NotesComponent } from './components/notes/notes.component';
 import { AgGridModule } from 'ag-grid-angular';
 
 import { FullCalendarModule } from 'primeng/fullcalendar';
+import { SchoolDiaryDetailsComponent } from './components/school-diary-details/school-diary-details.component';
 
 @NgModule({
   declarations: [FeatureComponent, 
     SchoolDiaryComponent, 
     HomePageComponent, 
-    NotesComponent],
+    NotesComponent, 
+    SchoolDiaryDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,6 +27,7 @@ import { FullCalendarModule } from 'primeng/fullcalendar';
     FeatureComponent,
     HomePageComponent,
     SchoolDiaryComponent,
+    SchoolDiaryDetailsComponent,
     NotesComponent
   ]
 })

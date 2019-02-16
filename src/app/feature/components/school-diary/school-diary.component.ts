@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AgGridNg2 } from 'ag-grid-angular';
+import { BackOfficeService } from 'src/app/shared/services/back-office.service';
 
 @Component({
   selector: 'app-school-diary',
@@ -13,75 +14,37 @@ export class SchoolDiaryComponent implements OnInit {
   rowData: any;
   columnDefs = [
     {
-      headerName: 'First Name', 
-      field: 'firstName', 
+      headerName: 'Class Number', 
+      field: 'id', 
       sortable: true, 
       filter: true, 
       checkboxSelection: true
+    },
+    {
+      headerName: 'First Name', 
+      field: 'firstName', 
+      sortable: true, 
+      filter: true
     },
     {
       headerName: 'Last Name', 
       field: 'lastName', 
       sortable: true, 
       filter: true
-    },
-    {
-      headerName: 'Age', 
-      field: 'age', 
-      sortable: true, 
-      filter: true}
+    }
 ];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private backOfficeService: BackOfficeService) { }
 
-  ngOnInit() {
-    this.rowData = [
-      {
-          number: 1,
-          firstName: 'Anthony',
-          lastName: 'Joshua',
-          age: 15,
-          address: 'London',
-          phoneNumber: '089348423432',
-          photoUrl: '' 
-      },
-      {
-          number: 1,
-          firstName: 'Bob',
-          lastName: 'Wilder',
-          age: 15,
-          address: 'London',
-          phoneNumber: '089348423432',
-          photoUrl: '' 
-      },
-      {
-          number: 1,
-          firstName: 'Mark',
-          lastName: 'Roberts',
-          age: 15,
-          address: 'London',
-          phoneNumber: '089348423432',
-          photoUrl: '' 
-      },
-      {
-          number: 1,
-          firstName: 'Mike',
-          lastName: 'Sanders',
-          age: 15,
-          address: 'London',
-          phoneNumber: '089348423432',
-          photoUrl: '' 
-      },
-      {
-          number: 1,
-          firstName: 'Robert',
-          lastName: 'Franklin',
-          age: 15,
-          address: 'London',
-          phoneNumber: '089348423432',
-          photoUrl: '' 
-      }
-  ]
+  async ngOnInit() {
+    this.rowData = this.backOfficeService.getStudentsInClass();
+  }
+
+  getSelectedRows() {
+    const selectedNodes = this.agGrid.api.getSelectedNodes();
+    const selectedData = selectedNodes.map( node => node.data );
+    const selectedDataStringPresentation = selectedData.map( node => node.firstName + ' ' + node.lastName).join(', ');
+    alert(`Selected nodes: ${selectedDataStringPresentation}`);
   }
 
 }

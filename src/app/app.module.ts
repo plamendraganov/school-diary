@@ -21,6 +21,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { GetPdfService } from './shared/services/get-pdf.service';
+import { BackOfficeService } from './shared/services/back-office.service';
 import { SchoolDiaryComponent } from './feature/components/school-diary/school-diary.component';
 
 @NgModule({
@@ -49,7 +50,8 @@ import { SchoolDiaryComponent } from './feature/components/school-diary/school-d
     PdfViewerModule
   ],
   providers: [
-    GetPdfService
+    GetPdfService,
+    BackOfficeService
   ],
   bootstrap: [AppComponent]
 })
