@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const axios = require('axios');
+// const axios = require('axios');
 
 @Injectable({
   providedIn: 'root'
