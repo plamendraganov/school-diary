@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.3",
     "ag-grid-angular": "^20.0.0",
     "ag-grid-community": "^20.0.0",
+    "axios": "^0.18.0",
     "core-js": "^2.5.4",
     "fullcalendar": "^4.0.0-alpha.2",
     "ng-redux": "^4.1.0",
