@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Injector, ReflectiveInjector, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AgGridNg2 } from 'ag-grid-angular';
+import { GridOptions } from 'ag-grid-community';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BackOfficeService } from 'src/app/shared/services/back-office.service';
 
 @Component({
@@ -11,8 +13,17 @@ import { BackOfficeService } from 'src/app/shared/services/back-office.service';
 export class SchoolDiaryComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridNg2;
 
+  @Output() cellClickedEvent = new EventEmitter<any>();
+
   loading = false;
+  startEditingValue;
+	gridOptions: GridOptions;
+	gridApi;
+	gridColumnApi;
   rowData: any;
+  pagination: boolean = true;
+  isReadOnly: boolean = false;
+  
   columnDefs = [
     {
       headerName: 'Class Number', 
@@ -35,7 +46,13 @@ export class SchoolDiaryComponent implements OnInit {
     }
 ];
 
-  constructor(private http: HttpClient, private backOfficeService: BackOfficeService) { }
+  constructor(
+    private http: HttpClient, 
+    private backOfficeService: BackOfficeService, 
+    private router: Router, 
+    private route: ActivatedRoute,
+    public injector: Injector
+    ) { }
 
   async ngOnInit() {
     this.loading = true;   
@@ -53,5 +70,11 @@ export class SchoolDiaryComponent implements OnInit {
   addNewStudent() {
     window.location.href = 'school-diary/new-student'
   }
+
+  async onCellClick(event){
+    if (event.data.id) {
+      this.router.navigate([`./${event.data.id}`], { relativeTo:this.route })
+    }
+	}
 
 }
