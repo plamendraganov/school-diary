@@ -1,0 +1,17 @@
+.form-control {
+    color: blue;
+}
+
+.form-control input[type=text].ng-untouched {
+    color: red;
+}
+
+.welcome-back {
+    font-size: 1.6em;
+    color: red;
+    z-index: 999;
+}
+
+.errors {
+    color: red;
+}

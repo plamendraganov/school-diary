@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { FeatureComponent } from './feature.component';
 import { SchoolDiaryComponent } from './components/school-diary/school-diary.component';
@@ -22,6 +23,7 @@ import { AddNewStudentComponent } from './components/add-new-student/add-new-stu
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     AgGridModule.withComponents([]),
     FullCalendarModule,
     NgxLoadingModule.forRoot({
