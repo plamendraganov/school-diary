@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-new-student',
@@ -14,7 +15,7 @@ export class AddNewStudentComponent implements OnInit {
   lastNameControl;
   addressControl;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private _route:ActivatedRoute, private _router:Router, private formBuilder: FormBuilder) { 
     this.buildForm();
   }
 
@@ -64,5 +65,10 @@ export class AddNewStudentComponent implements OnInit {
   // onResetNotes() {
   //   this.notesControls.reset();
   // }
+
+  onBackToDiary(): void {
+    this._router.navigate(['/school-diary']);
+  }
+  
 
 }
