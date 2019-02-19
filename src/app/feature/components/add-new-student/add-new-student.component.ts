@@ -11,6 +11,8 @@ export class AddNewStudentComponent implements OnInit {
   // notesControls: FormArray;
   showWelcomeMessage: boolean = false;
   firstNameControl;
+  lastNameControl;
+  addressControl;
 
   constructor(private formBuilder: FormBuilder) { 
     this.buildForm();
@@ -23,8 +25,8 @@ export class AddNewStudentComponent implements OnInit {
   buildForm() {
     this.addStudentForm = this.formBuilder.group({
       firstName: this.formBuilder.control(null, [Validators.required, Validators.minLength(3)]),
-      lastName: this.formBuilder.control('Doe'),
-      address: this.formBuilder.control(null),
+      lastName: this.formBuilder.control(null, [Validators.required, Validators.minLength(5)]),
+      address: this.formBuilder.control(null, Validators.required),
       phoneNumber: this.formBuilder.control(null),
       notes: this.formBuilder.control(null)
       // notes: this.formBuilder.control([
@@ -35,8 +37,11 @@ export class AddNewStudentComponent implements OnInit {
     this.firstNameControl = this.addStudentForm.get('firstName');
     this.firstNameControl.valueChanges
       .subscribe(value => {
-        this.showWelcomeMessage = value && value.toLowerCase().trim() === '';
+        this.showWelcomeMessage = value.toLowerCase().trim() === 'paul';
       })
+
+    this.lastNameControl = this.addStudentForm.get('lastName');
+    this.addressControl = this.addStudentForm.get('address');
   }
 
   onSubmitForm() {
