@@ -1,0 +1,10 @@
+.errors {
+    color: red;
+}
+
+button:disabled {
+    background-color: rgba(246, 244, 241, 1);
+    border-color: rgba(246, 244, 241, 1);
+    color: rgba(65, 65, 67, 0.8);
+    cursor: default;
+}

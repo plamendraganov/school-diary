@@ -10,12 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddNewStudentComponent implements OnInit {
   addStudentForm: FormGroup;
   // notesControls: FormArray;
-  showWelcomeMessage: boolean = false;
   firstNameControl;
   lastNameControl;
   addressControl;
 
-  constructor(private _route:ActivatedRoute, private _router:Router, private formBuilder: FormBuilder) { 
+  constructor(
+    private _route:ActivatedRoute, 
+    private _router:Router, 
+    private formBuilder: FormBuilder) { 
     this.buildForm();
   }
 
@@ -36,11 +38,6 @@ export class AddNewStudentComponent implements OnInit {
     });
     // this.notesControls = this.addStudentForm.get('notes') as FormArray;
     this.firstNameControl = this.addStudentForm.get('firstName');
-    this.firstNameControl.valueChanges
-      .subscribe(value => {
-        this.showWelcomeMessage = value.toLowerCase().trim() === 'paul';
-      })
-
     this.lastNameControl = this.addStudentForm.get('lastName');
     this.addressControl = this.addStudentForm.get('address');
   }

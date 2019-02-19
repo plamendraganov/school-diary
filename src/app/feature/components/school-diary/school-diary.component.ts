@@ -4,6 +4,7 @@ import { AgGridNg2 } from 'ag-grid-angular';
 import { GridOptions } from 'ag-grid-community';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BackOfficeService } from 'src/app/shared/services/back-office.service';
+import { ShareAgGridDataService } from 'src/app/shared/services/share-ag-grid-data.service';
 
 @Component({
   selector: 'app-school-diary',
@@ -51,7 +52,8 @@ export class SchoolDiaryComponent implements OnInit {
     private backOfficeService: BackOfficeService, 
     private router: Router, 
     private route: ActivatedRoute,
-    public injector: Injector
+    private injector: Injector,
+    private shareAgGridDataService: ShareAgGridDataService
     ) { }
 
   async ngOnInit() {
@@ -72,6 +74,8 @@ export class SchoolDiaryComponent implements OnInit {
   }
 
   async onCellClick(event){
+    this.shareAgGridDataService.agGridData = event.data;
+    
     if (event.data.id) {
       this.router.navigate([`./${event.data.id}`], { relativeTo:this.route })
     }
