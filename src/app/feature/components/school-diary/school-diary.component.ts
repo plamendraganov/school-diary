@@ -5,6 +5,10 @@ import { GridOptions } from 'ag-grid-community';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BackOfficeService } from 'src/app/shared/services/back-office.service';
 import { ShareAgGridDataService } from 'src/app/shared/services/share-ag-grid-data.service';
+import { Observable } from 'rxjs';
+import { IAppState } from 'src/app/store/models/app-state';
+import { IStudentData } from 'src/app/store/models/student-data';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-school-diary',
@@ -28,7 +32,7 @@ export class SchoolDiaryComponent implements OnInit {
   columnDefs = [
     {
       headerName: 'Class Number', 
-      field: 'id', 
+      field: 'number', 
       sortable: true, 
       filter: true, 
       checkboxSelection: true
@@ -44,8 +48,28 @@ export class SchoolDiaryComponent implements OnInit {
       field: 'lastName', 
       sortable: true, 
       filter: true
+    },
+    {
+      headerName: 'Age', 
+      field: 'age', 
+      sortable: true, 
+      filter: true
+    },
+    {
+      headerName: 'Address', 
+      field: 'address', 
+      sortable: true, 
+      filter: true
+    },
+    {
+      headerName: 'Phone Number', 
+      field: 'phoneNumber', 
+      sortable: true, 
+      filter: true
     }
-];
+  ];
+
+  students: Observable<IStudentData[]>
 
   constructor(
     private http: HttpClient, 
@@ -53,13 +77,16 @@ export class SchoolDiaryComponent implements OnInit {
     private router: Router, 
     private route: ActivatedRoute,
     private injector: Injector,
-    private shareAgGridDataService: ShareAgGridDataService
-    ) { }
+    private shareAgGridDataService: ShareAgGridDataService,
+    private store: Store<IAppState>) { }
 
   async ngOnInit() {
     this.loading = true;   
-    this.rowData = await this.backOfficeService.getStudentsInClass();
+    // this.rowData = await this.backOfficeService.getStudentsInClass();
+    this.rowData = this.store.select(state => state.classStudents)
     this.loading = false;
+
+    this.students = this.store.select(state => state.classStudents)
   }
 
   getSelectedRows() {
@@ -76,8 +103,8 @@ export class SchoolDiaryComponent implements OnInit {
   async onCellClick(event){
     this.shareAgGridDataService.agGridData = event.data;
     
-    if (event.data.id) {
-      this.router.navigate([`./${event.data.id}`], { relativeTo:this.route })
+    if (event.data.number) {
+      this.router.navigate([`./${event.data.number}`], { relativeTo:this.route })
     }
 	}
 

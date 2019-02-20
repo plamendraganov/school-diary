@@ -30,7 +30,7 @@ export class SchoolDiaryDetailsComponent implements OnInit {
   async ngOnInit() {
     this.receivedData = this.shareAgGridDataService.agGridData;
     console.log(this.receivedData);
-    console.log(this.receivedData.firstName);
+    // console.log(this.receivedData.firstName);
     this.studentDetails = this.formBuilder.group({
       firstName: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
       lastName: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
@@ -75,7 +75,7 @@ export class SchoolDiaryDetailsComponent implements OnInit {
   }
 
   saveStudentProfile() {
-    console.log(this.studentDetails.value);
+    // console.log(this.studentDetails.value);
     this._router.navigate(['/school-diary']);
   }
 

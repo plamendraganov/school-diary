@@ -43,7 +43,7 @@ export class AddNewStudentComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log(this.addStudentForm.value);
+    // console.log(this.addStudentForm.value);
   }
 
   // onAddNote() {

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { StoreModule } from '@ngrx/store';
+import { studentReducer } from './store/reducers/reducer';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -37,7 +38,7 @@ import { SchoolDiaryComponent } from './feature/components/school-diary/school-d
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({
-      
+      classStudents: studentReducer
     }),
     ReactiveFormsModule,
     FormsModule,

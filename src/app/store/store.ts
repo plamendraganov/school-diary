@@ -1,16 +1,5 @@
-// import { tassign } from 'tassign';
-// import { StudentData } from './interfaces/student-data';
+import { IStudentData } from './models/student-data';
 
-
-// export const INITIAL_STATE: StudentData = {
-//     students: {
-
-//     }
-    
-
-
-// }
-
-// export function rootReducer(state: any, action): any {
-
-// }
+export interface IAppState {
+    readonly classStudents: IStudentData[];
+}

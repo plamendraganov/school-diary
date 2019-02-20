@@ -1,19 +1,25 @@
 import { Action } from '@ngrx/store';
+import { IStudentData } from '../models/student-data';
  
-export enum ActionTypes {
-  Increment = '[Counter Component] Increment',
-  Decrement = '[Counter Component] Decrement',
-  Reset = '[Counter Component] Reset',
+// export enum ActionTypes {
+//   ADD_STUDENT = '[Student] Add',
+//   REMOVE_STUDENT = '[Student] Remove',
+//   Reset = '[Students] Reset',
+// }
+
+export const ADD_STUDENT = '[STUDENT] Add';
+export const REMOVE_STUDENT = '[STUDENT] Remove';
+
+export class AddStudent implements Action {
+    readonly type: string = ADD_STUDENT;
+
+    constructor(public payload: IStudentData) { }
 }
- 
-export class Increment implements Action {
-  readonly type = ActionTypes.Increment;
+
+export class RemoveStudent implements Action {
+    readonly type: string = REMOVE_STUDENT;
+      
+    constructor(public payload: number) { }
 }
- 
-export class Decrement implements Action {
-  readonly type = ActionTypes.Decrement;
-}
- 
-export class Reset implements Action {
-  readonly type = ActionTypes.Reset;
-}
+
+export type Types = AddStudent | RemoveStudent;
