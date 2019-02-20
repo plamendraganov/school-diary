@@ -11,17 +11,8 @@
   </ag-grid-angular>
 
   <button class="btn btn-primary" (click)="addNewStudent()">Add New Student</button>
+  <button class="btn btn-danger" (click)="removeStudent()">Remove Student</button>
   <!-- <button class="btn btn-info" (click)="getSelectedRows()">Get Selected Rows</button> -->
 
   <ngx-loading [show]="loading"></ngx-loading>
-</div>
-
-<h2>Hello world</h2>
-
-<div>
-  <ul>
-    <li *ngFor="let student of students | async; let i = index">
-      <a href="#">{{ student.firstName }}</a>
-    </li>
-  </ul>
 </div>

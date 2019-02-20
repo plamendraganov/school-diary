@@ -19,7 +19,7 @@ export class AddStudent implements Action {
 export class RemoveStudent implements Action {
     readonly type: string = REMOVE_STUDENT;
       
-    constructor(public payload: number) { }
+    constructor(public payload: IStudentData) { }
 }
 
 export type Types = AddStudent | RemoveStudent;

@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/store/models/app-state';
 import { IStudentData } from 'src/app/store/models/student-data';
 import { Store } from '@ngrx/store';
+import { RemoveStudent } from 'src/app/store/actions/actions';
 
 @Component({
   selector: 'app-school-diary',
@@ -98,6 +99,14 @@ export class SchoolDiaryComponent implements OnInit {
 
   addNewStudent() {
     window.location.href = 'school-diary/new-student'
+  }
+
+  removeStudent(id) {
+    const selectedNodes = this.agGrid.api.getSelectedNodes();
+    const selectedData = selectedNodes.map( node => node.data );
+    selectedData.forEach(node => {
+      this.store.dispatch(new RemoveStudent(node))
+    })
   }
 
   async onCellClick(event){
