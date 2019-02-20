@@ -1,4 +1,4 @@
-export interface StudentData {
+export interface IStudentData {
         students?: {
             number: number,
             firstName: string,

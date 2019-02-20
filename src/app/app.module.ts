@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { StoreModule } from '@ngrx/store';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +36,9 @@ import { SchoolDiaryComponent } from './feature/components/school-diary/school-d
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({
+      
+    }),
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
