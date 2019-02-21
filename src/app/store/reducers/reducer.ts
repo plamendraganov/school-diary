@@ -10,7 +10,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        photoUrl: '' 
+        notes: '' 
     },
     {
         number: 2,
@@ -19,7 +19,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        photoUrl: '' 
+        notes: '' 
     },
     {
         number: 3,
@@ -28,7 +28,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        photoUrl: '' 
+        notes: '' 
     },
     {
         number: 4,
@@ -37,7 +37,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        photoUrl: '' 
+        notes: '' 
     },
     {
         number: 5,
@@ -46,7 +46,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        photoUrl: '' 
+        notes: '' 
     }
 ]
 
@@ -55,8 +55,17 @@ function addStudent(state: IStudentData[], student) {
 }
 
 function removeStudent(state: IStudentData[], studentToBeRemoved) {
-    const studentToRemove = studentToBeRemoved;
-    return [...state.filter(s => s !== studentToRemove)];
+    return [...state.filter(student => student !== studentToBeRemoved)];
+}
+
+function editStudent(state: IStudentData[], editedStudent) {
+    const studentIndex = state.findIndex(student => student.firstName === editedStudent.firstName
+        && student.lastName === editedStudent.lastName)
+
+    if (studentIndex > -1) {
+        state.splice(studentIndex, 1, editedStudent);
+    } 
+    return state;
 }
 
 export function studentReducer(state: IStudentData[] = initialState, action: StudentActions.Types) {
@@ -65,6 +74,8 @@ export function studentReducer(state: IStudentData[] = initialState, action: Stu
             return addStudent(state, action.payload);
         case StudentActions.REMOVE_STUDENT:
             return removeStudent(state, action.payload);
+        case StudentActions.EDIT_STUDENT:
+            return editStudent(state, action.payload);
         default:
             return state;
     }

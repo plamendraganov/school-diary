@@ -2,27 +2,53 @@
     <fieldset class="border p-2">
       <legend>Student Profile:</legend>
       <div class="form-group">
+        <label for="classNumber">Class Number:</label>
+        <input formControlName="number" type="number" class="form-control" id="classNumber" placeholder="Number in Class">
+        <div *ngIf="classNumberControl.errors" class="errors">
+          <small *ngIf="classNumberControl.errors.required && (classNumberControl.touched || classNumberControl.dirty)">
+            This field is required!
+          </small>
+          <small *ngIf="classNumberControl.errors.min">
+            The student's class number cannot be negative or zero!
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
         <label for="firstName">First Name:</label>
-        <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
-        <div *ngIf="firstNameControl.errors" class="errors">
+        <input [attr.disabled]="true" formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+        <!-- <div *ngIf="firstNameControl.errors" class="errors">
           <small *ngIf="firstNameControl.errors.required && (firstNameControl.touched || firstNameControl.dirty)">
             This field is required!
           </small>
           <small *ngIf="firstNameControl.errors.minlength">
             Must be at least {{ firstNameControl.errors.minlength.requiredLength }} letters!
           </small>
-        </div>
+        </div> -->
       </div>
   
       <div class="form-group">
         <label for="lastName">Last Name:</label>
-        <input formControlName="lastName" type="text" class="form-control lastName" id="lastName" placeholder="Last Name">
-        <div *ngIf="lastNameControl.errors" class="errors">
+        <input [attr.disabled]="true" formControlName="lastName" type="text" class="form-control lastName" id="lastName" placeholder="Last Name">
+        <!-- <div *ngIf="lastNameControl.errors" class="errors">
           <small *ngIf="lastNameControl.errors.required && (lastNameControl.touched || lastNameControl.dirty)">
             This field is required!
           </small>
           <small *ngIf="lastNameControl.errors.minlength">
             Must be at least {{ lastNameControl.errors.minlength.requiredLength }} letters
+          </small>
+        </div> -->
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input formControlName="age" type="number" class="form-control" id="age" placeholder="Type student's age">
+        <div *ngIf="ageControl.errors" class="errors">
+          <small *ngIf="ageControl.errors.required && (ageControl.touched || ageControl.dirty)">
+            This field is required!
+          </small>
+          <small *ngIf="ageControl.errors.min">
+            The student's age cannot be less than 6!
           </small>
         </div>
       </div>

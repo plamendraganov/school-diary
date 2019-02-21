@@ -15,8 +15,10 @@ import { IStudentData } from 'src/app/store/models/student-data';
 export class AddNewStudentComponent implements OnInit {
   addStudentForm: FormGroup;
   // notesControls: FormArray;
+  classNumberControl;
   firstNameControl;
   lastNameControl;
+  ageControl;
   addressControl;
 
   students: Observable<IStudentData[]>
@@ -30,14 +32,15 @@ export class AddNewStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-this.students = this.store.select(state => state.classStudents)
-console.log(this.students);
+    this.students = this.store.select(state => state.classStudents);
   }
 
   buildForm() {
     this.addStudentForm = this.formBuilder.group({
-      firstName: this.formBuilder.control(null, [Validators.required, Validators.minLength(3)]),
-      lastName: this.formBuilder.control(null, [Validators.required, Validators.minLength(5)]),
+      number: this.formBuilder.control(null, [Validators.required, Validators.min(1)]),
+      firstName: this.formBuilder.control(null, [Validators.required, Validators.minLength(2)]),
+      lastName: this.formBuilder.control(null, [Validators.required, Validators.minLength(2)]),
+      age: this.formBuilder.control(null, [Validators.required, Validators.min(6)]),
       address: this.formBuilder.control(null, Validators.required),
       phoneNumber: this.formBuilder.control(null),
       notes: this.formBuilder.control(null)
@@ -46,8 +49,10 @@ console.log(this.students);
       // ])
     });
     // this.notesControls = this.addStudentForm.get('notes') as FormArray;
+    this.classNumberControl = this.addStudentForm.get('number');
     this.firstNameControl = this.addStudentForm.get('firstName');
     this.lastNameControl = this.addStudentForm.get('lastName');
+    this.ageControl = this.addStudentForm.get('age');
     this.addressControl = this.addStudentForm.get('address');
   }
 

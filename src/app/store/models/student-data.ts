@@ -5,5 +5,5 @@ export interface IStudentData {
     age: number,
     address: string,
     phoneNumber: string,
-    photoUrl: string 
+    notes: string 
 }

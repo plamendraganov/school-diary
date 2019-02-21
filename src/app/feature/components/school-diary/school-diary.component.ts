@@ -70,7 +70,7 @@ export class SchoolDiaryComponent implements OnInit {
     }
   ];
 
-  students: Observable<IStudentData[]>
+  // students: Observable<IStudentData[]>
 
   constructor(
     private http: HttpClient, 
@@ -87,7 +87,9 @@ export class SchoolDiaryComponent implements OnInit {
     this.rowData = this.store.select(state => state.classStudents)
     this.loading = false;
 
-    this.students = this.store.select(state => state.classStudents)
+    // this.students = this.store.select(state => state.classStudents)
+    // console.log("The STUDENTS ARE:");
+    // console.log(this.students);
   }
 
   getSelectedRows() {
@@ -98,7 +100,8 @@ export class SchoolDiaryComponent implements OnInit {
   }
 
   addNewStudent() {
-    window.location.href = 'school-diary/new-student'
+    // window.location.href = 'school-diary/new-student';
+    this.router.navigate(['/school-diary/new-student']);
   }
 
   removeStudent(id) {

@@ -9,6 +9,7 @@ import { IStudentData } from '../models/student-data';
 
 export const ADD_STUDENT = '[STUDENT] Add';
 export const REMOVE_STUDENT = '[STUDENT] Remove';
+export const EDIT_STUDENT = '[STUDENT] Edit'
 
 export class AddStudent implements Action {
     readonly type: string = ADD_STUDENT;
@@ -22,4 +23,10 @@ export class RemoveStudent implements Action {
     constructor(public payload: IStudentData) { }
 }
 
-export type Types = AddStudent | RemoveStudent;
+export class EditStudent implements Action {
+    readonly type: string = EDIT_STUDENT;
+
+    constructor(public payload: IStudentData) { }
+}
+
+export type Types = AddStudent | RemoveStudent | EditStudent;

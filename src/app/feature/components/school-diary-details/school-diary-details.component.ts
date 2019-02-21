@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ShareAgGridDataService } from 'src/app/shared/services/share-ag-grid-data.service';
 import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store/models/app-state';
+import { EditStudent } from 'src/app/store/actions/actions';
 
 @Component({
   selector: 'app-school-diary-details',
@@ -10,14 +13,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SchoolDiaryDetailsComponent implements OnInit {
   studentDetails: FormGroup;
+  number;
   firstName;
   lastName;
+  age;
   address;
   phoneNumber;
   notes;
 
+  classNumberControl;
   firstNameControl;
   lastNameControl;
+  ageControl;
   addressControl;
   receivedData: any;
 
@@ -25,15 +32,16 @@ export class SchoolDiaryDetailsComponent implements OnInit {
     public shareAgGridDataService: ShareAgGridDataService, 
     private _route:ActivatedRoute, 
     private _router:Router, 
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private store: Store<IAppState>) { }
 
   async ngOnInit() {
     this.receivedData = this.shareAgGridDataService.agGridData;
-    console.log(this.receivedData);
-    // console.log(this.receivedData.firstName);
     this.studentDetails = this.formBuilder.group({
-      firstName: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
-      lastName: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+      number: this.formBuilder.control('', [Validators.required, Validators.min(1)]),
+      firstName: this.formBuilder.control('', [Validators.required, Validators.minLength(2)]),
+      lastName: this.formBuilder.control('', [Validators.required, Validators.minLength(2)]),
+      age: this.formBuilder.control(null, [Validators.required, Validators.min(6)]),
       address: this.formBuilder.control('', Validators.required),
       phoneNumber: this.formBuilder.control(''),
       notes: this.formBuilder.control('')
@@ -42,26 +50,33 @@ export class SchoolDiaryDetailsComponent implements OnInit {
     this.populateStudentProfile();
     
     this.onChanges();
-
+    this.classNumberControl = this.studentDetails.get('number');
     this.firstNameControl = this.studentDetails.get('firstName');
     this.lastNameControl = this.studentDetails.get('lastName');
+    this.ageControl = this.studentDetails.get('age');
     this.addressControl = this.studentDetails.get('address');
   }
 
   populateStudentProfile() {
     let controls = this.studentDetails.controls;
-    let controlNames = ['firstName', 'lastName', 'address', 'phoneNumber', 'notes'];
+    let controlNames = ['number', 'firstName', 'lastName', 'age', 'address', 'phoneNumber', 'notes'];
     controlNames.forEach(control => {
       controls[control].setValue(this.receivedData[control])
     })
   }
 
   onChanges(): void {
+    this.studentDetails.get('number').valueChanges.subscribe(val => {
+      this.number = val;
+    });
     this.studentDetails.get('firstName').valueChanges.subscribe(val => {
       this.firstName = val;
     });
     this.studentDetails.get('lastName').valueChanges.subscribe(val => {
       this.lastName = val;
+    });
+    this.studentDetails.get('age').valueChanges.subscribe(val => {
+      this.age = val;
     });
     this.studentDetails.get('address').valueChanges.subscribe(val => {
       this.address = val;
@@ -75,7 +90,9 @@ export class SchoolDiaryDetailsComponent implements OnInit {
   }
 
   saveStudentProfile() {
-    // console.log(this.studentDetails.value);
+    this.store.dispatch(new EditStudent(this.studentDetails.value))
+
+    console.log(this.studentDetails.value);
     this._router.navigate(['/school-diary']);
   }
 
