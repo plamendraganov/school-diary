@@ -23,6 +23,7 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 
+// import $ from 'jquery';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { GetPdfService } from './shared/services/get-pdf.service';
