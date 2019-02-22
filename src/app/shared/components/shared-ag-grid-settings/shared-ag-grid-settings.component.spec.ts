@@ -8,7 +8,9 @@ describe('SharedAgGridSettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SharedAgGridSettingsComponent ]
+      declarations: [ 
+        SharedAgGridSettingsComponent 
+      ]
     })
     .compileComponents();
   }));

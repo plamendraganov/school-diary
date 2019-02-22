@@ -9,7 +9,7 @@ import { IStudentData } from '../models/student-data';
 
 export const ADD_STUDENT = '[STUDENT] Add';
 export const REMOVE_STUDENT = '[STUDENT] Remove';
-export const EDIT_STUDENT = '[STUDENT] Edit'
+export const EDIT_STUDENT = '[STUDENT] Edit';
 
 export class AddStudent implements Action {
     readonly type: string = ADD_STUDENT;

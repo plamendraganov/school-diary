@@ -17,9 +17,7 @@ export class AppComponent implements OnInit {
 
   
 
-    constructor(private http: HttpClient, private getPdfService: GetPdfService) {
-
-    }
+    constructor(private http: HttpClient, private getPdfService: GetPdfService) { }
 
     async ngOnInit() {
       this.loading = true;  

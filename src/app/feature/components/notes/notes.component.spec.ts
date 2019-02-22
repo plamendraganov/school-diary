@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FullCalendarModule } from 'primeng/fullcalendar';
+
 import { NotesComponent } from './notes.component';
 
 describe('NotesComponent', () => {
@@ -8,7 +10,12 @@ describe('NotesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotesComponent ]
+      imports: [
+        FullCalendarModule
+      ],
+      declarations: [ 
+        NotesComponent 
+      ]
     })
     .compileComponents();
   }));

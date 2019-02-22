@@ -8,7 +8,9 @@ describe('CoreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoreComponent ]
+      declarations: [ 
+        CoreComponent 
+      ]
     })
     .compileComponents();
   }));
