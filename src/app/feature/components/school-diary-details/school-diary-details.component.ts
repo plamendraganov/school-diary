@@ -97,7 +97,11 @@ export class SchoolDiaryDetailsComponent implements OnInit {
   }
 
   onResetForm() {
-    this.studentDetails.reset();
+    this.studentDetails.get('number').reset();
+    this.studentDetails.get('age').reset();
+    this.studentDetails.get('address').reset();
+    this.studentDetails.get('phoneNumber').reset();
+    this.studentDetails.get('notes').reset();
   }
 
   onBackToDiary(): void {
