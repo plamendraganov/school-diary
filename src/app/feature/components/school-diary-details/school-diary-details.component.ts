@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/models/app-state';
 import { EditStudent } from 'src/app/store/actions/actions';
+import { NumberValidator } from 'src/app/shared/number-validator';
 
 @Component({
   selector: 'app-school-diary-details',
@@ -41,7 +42,7 @@ export class SchoolDiaryDetailsComponent implements OnInit {
       number: this.formBuilder.control('', [Validators.required, Validators.min(1)]),
       firstName: this.formBuilder.control('', [Validators.required, Validators.minLength(2)]),
       lastName: this.formBuilder.control('', [Validators.required, Validators.minLength(2)]),
-      age: this.formBuilder.control(null, [Validators.required, Validators.min(6)]),
+      age: this.formBuilder.control(null, [Validators.required, NumberValidator.range(6, 99)]),
       address: this.formBuilder.control('', Validators.required),
       phoneNumber: this.formBuilder.control(''),
       notes: this.formBuilder.control('')

@@ -47,8 +47,8 @@
           <small *ngIf="ageControl.errors.required && (ageControl.touched || ageControl.dirty)">
             This field is required!
           </small>
-          <small *ngIf="ageControl.errors.min">
-            The student's age cannot be less than 6!
+          <small *ngIf="ageControl.errors.range">
+              The student's age must be between 6 and 99!
           </small>
         </div>
       </div>

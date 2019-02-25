@@ -6,6 +6,7 @@ import { IAppState } from 'src/app/store/models/app-state';
 import { AddStudent } from 'src/app/store/actions/actions';
 import { Observable } from 'rxjs';
 import { IStudentData } from 'src/app/store/models/student-data';
+import { NumberValidator } from 'src/app/shared/number-validator';
 
 @Component({
   selector: 'app-add-new-student',
@@ -43,7 +44,7 @@ export class AddNewStudentComponent implements OnInit {
       number: this.formBuilder.control(null, [Validators.required, Validators.min(1)]),
       firstName: this.formBuilder.control(null, [Validators.required, Validators.minLength(2)]),
       lastName: this.formBuilder.control(null, [Validators.required, Validators.minLength(2)]),
-      age: this.formBuilder.control(null, [Validators.required, Validators.min(6)]),
+      age: this.formBuilder.control(null, [Validators.required, NumberValidator.range(6, 99)]),
       address: this.formBuilder.control(null, Validators.required),
       phoneNumber: this.formBuilder.control(null),
       notes: this.formBuilder.array([ this.buildNote() ])
