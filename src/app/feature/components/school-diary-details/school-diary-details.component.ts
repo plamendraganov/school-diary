@@ -30,8 +30,8 @@ export class SchoolDiaryDetailsComponent implements OnInit {
 
   constructor(
     public shareAgGridDataService: ShareAgGridDataService, 
-    private _route:ActivatedRoute, 
-    private _router:Router, 
+    private route:ActivatedRoute, 
+    private router:Router, 
     private formBuilder: FormBuilder,
     private store: Store<IAppState>) { }
 
@@ -93,7 +93,7 @@ export class SchoolDiaryDetailsComponent implements OnInit {
     this.store.dispatch(new EditStudent(this.studentDetails.value))
 
     console.log(this.studentDetails.value);
-    this._router.navigate(['/school-diary']);
+    this.router.navigate(['/school-diary']);
   }
 
   onResetForm() {
@@ -105,6 +105,6 @@ export class SchoolDiaryDetailsComponent implements OnInit {
   }
 
   onBackToDiary(): void {
-    this._router.navigate(['/school-diary']);
+    this.router.navigate(['/school-diary']);
   }
 }

@@ -72,11 +72,16 @@
       <small class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 
-    <section>
-      <label for="notes">Notes:</label>
-      <br>
-      <textarea formControlName="notes" id="notes" style="width: 100%" rows="3" placeholder="Write some notes"></textarea>
-    </section>
+    <button class="btn btn-info" type="button" (click)="addNewNote()">Add a Note</button>
+
+    <div formArrayName="notes" *ngFor="let note of notes.controls; let i = index">
+      <section [formGroupName]="i">
+        <label attr.for="{{ 'note' + i }}">Notes:</label>
+        <br>
+        <textarea formControlName="note" id="{{ 'note' + i }}" style="width: 100%" rows="3" placeholder="Write some notes"></textarea>
+      </section>
+    </div>
+    
   </fieldset>
   <br>
   <button type="submit" [disabled]="!addStudentForm.valid" class="btn btn-primary">Submit</button>

@@ -14,7 +14,10 @@ import { IStudentData } from 'src/app/store/models/student-data';
 })
 export class AddNewStudentComponent implements OnInit {
   addStudentForm: FormGroup;
-  // notesControls: FormArray;
+  get notes(): FormArray {
+    return <FormArray>this.addStudentForm.get('notes');
+  }
+
   classNumberControl;
   firstNameControl;
   lastNameControl;
@@ -24,8 +27,8 @@ export class AddNewStudentComponent implements OnInit {
   students: Observable<IStudentData[]>
 
   constructor(
-    private _route:ActivatedRoute, 
-    private _router:Router, 
+    private route: ActivatedRoute, 
+    private router: Router, 
     private formBuilder: FormBuilder,
     private store: Store<IAppState>) { 
     this.buildForm();
@@ -43,10 +46,7 @@ export class AddNewStudentComponent implements OnInit {
       age: this.formBuilder.control(null, [Validators.required, Validators.min(6)]),
       address: this.formBuilder.control(null, Validators.required),
       phoneNumber: this.formBuilder.control(null),
-      notes: this.formBuilder.control(null)
-      // notes: this.formBuilder.control([
-      //   this.formBuilder.control(null)
-      // ])
+      notes: this.formBuilder.array([ this.buildNote() ])
     });
     // this.notesControls = this.addStudentForm.get('notes') as FormArray;
     this.classNumberControl = this.addStudentForm.get('number');
@@ -56,12 +56,22 @@ export class AddNewStudentComponent implements OnInit {
     this.addressControl = this.addStudentForm.get('address');
   }
 
+  buildNote(): FormGroup {
+    return this.formBuilder.group({
+      note: ''
+    })
+  }
+
+  addNewNote(): void {
+    this.notes.push(this.buildNote());
+  }
+
   onSubmitForm() {
-    // console.log(this.addStudentForm.value);
+    console.log(this.addStudentForm.value);
     
     this.store.dispatch(new AddStudent(this.addStudentForm.value))
     console.log(this.store);
-    this._router.navigate(['/school-diary']);
+    this.router.navigate(['/school-diary']);
   }
 
   // onAddNote() {
@@ -82,8 +92,9 @@ export class AddNewStudentComponent implements OnInit {
   // }
 
   onBackToDiary(): void {
-    this._router.navigate(['/school-diary']);
+    this.router.navigate(['/school-diary']);
   }
+
   
 
 }
