@@ -72,16 +72,20 @@
       <small class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 
-    <button class="btn btn-info" type="button" (click)="addNewNote()">Add a Note</button>
-
+    
     <div formArrayName="notes" *ngFor="let note of notes.controls; let i = index">
       <section [formGroupName]="i">
-        <label attr.for="{{ 'note' + i }}">Notes:</label>
+        <label attr.for="{{ 'note' + i }}">Note {{ i + 1 }}:</label>
         <br>
         <textarea formControlName="note" id="{{ 'note' + i }}" style="width: 100%" rows="3" placeholder="Write some notes"></textarea>
       </section>
+      <small *ngIf="(notesControl.touched) && ((!notesControl.value[i].note) || notesControl.value[i].note.trim() === '')" class="errors">
+          The note {{ notesControl.value[i].note }} cannot be empty!
+      </small>
     </div>
-    
+
+    <br>
+    <button class="btn btn-info" type="button" (click)="addNewNote()">Add Note</button>
   </fieldset>
   <br>
   <button type="submit" [disabled]="!addStudentForm.valid" class="btn btn-primary">Submit</button>

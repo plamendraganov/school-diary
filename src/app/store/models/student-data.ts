@@ -1,3 +1,7 @@
+export interface INotes {
+  note: string
+}
+
 export interface IStudentData {
     number: number,
     firstName: string,
@@ -5,5 +9,5 @@ export interface IStudentData {
     age: number,
     address: string,
     phoneNumber: string,
-    notes: string 
+    notes?: INotes[]
 }

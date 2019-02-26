@@ -7,6 +7,7 @@ import { AddStudent } from 'src/app/store/actions/actions';
 import { Observable } from 'rxjs';
 import { IStudentData } from 'src/app/store/models/student-data';
 import { NumberValidator } from 'src/app/shared/number-validator';
+import { NotEmptyValidator } from 'src/app/shared/not-empty-validator';
 
 @Component({
   selector: 'app-add-new-student',
@@ -24,6 +25,10 @@ export class AddNewStudentComponent implements OnInit {
   lastNameControl;
   ageControl;
   addressControl;
+  notesControl;
+  singleNoteControl;
+
+  isLastNoteEmpty: boolean = false;
 
   students: Observable<IStudentData[]>
 
@@ -49,22 +54,32 @@ export class AddNewStudentComponent implements OnInit {
       phoneNumber: this.formBuilder.control(null),
       notes: this.formBuilder.array([ this.buildNote() ])
     });
-    // this.notesControls = this.addStudentForm.get('notes') as FormArray;
+    this.notesControl = this.addStudentForm.get('notes') as FormArray;
     this.classNumberControl = this.addStudentForm.get('number');
     this.firstNameControl = this.addStudentForm.get('firstName');
     this.lastNameControl = this.addStudentForm.get('lastName');
     this.ageControl = this.addStudentForm.get('age');
     this.addressControl = this.addStudentForm.get('address');
+    // this.notesControl = this.addStudentForm.get('notes');
+    // this.singleNoteControl = this.notesControl.notes.get('note');
+
   }
 
   buildNote(): FormGroup {
     return this.formBuilder.group({
-      note: ''
+      note: this.formBuilder.control(null, NotEmptyValidator.empty())
     })
   }
 
   addNewNote(): void {
-    this.notes.push(this.buildNote());
+    const noteValue = this.notes.value[this.notes.length - 1].note;
+
+    if (noteValue && noteValue.trim() !== '') {
+      this.notes.push(this.buildNote());
+      this.isLastNoteEmpty = false;
+      console.log(this.singleNoteControl);
+    }
+    this.isLastNoteEmpty = true;
   }
 
   onSubmitForm() {

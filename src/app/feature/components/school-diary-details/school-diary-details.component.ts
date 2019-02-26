@@ -20,7 +20,10 @@ export class SchoolDiaryDetailsComponent implements OnInit {
   age;
   address;
   phoneNumber;
-  notes;
+  // notes;
+  get notes(): FormArray {
+    return <FormArray>this.studentDetails.get('notes');
+  }
 
   classNumberControl;
   firstNameControl;
@@ -45,7 +48,7 @@ export class SchoolDiaryDetailsComponent implements OnInit {
       age: this.formBuilder.control(null, [Validators.required, NumberValidator.range(6, 99)]),
       address: this.formBuilder.control('', Validators.required),
       phoneNumber: this.formBuilder.control(''),
-      notes: this.formBuilder.control('')
+      notes: this.formBuilder.array([ this.buildNote() ])
     });
 
     this.populateStudentProfile();
@@ -58,11 +61,29 @@ export class SchoolDiaryDetailsComponent implements OnInit {
     this.addressControl = this.studentDetails.get('address');
   }
 
+  buildNote(): FormGroup {
+    return this.formBuilder.group({
+      note: ''
+    })
+  }
+
+  addNewNote(): void {
+    this.notes.push(this.buildNote());
+  }
+
   populateStudentProfile() {
     let controls = this.studentDetails.controls;
     let controlNames = ['number', 'firstName', 'lastName', 'age', 'address', 'phoneNumber', 'notes'];
     controlNames.forEach(control => {
-      controls[control].setValue(this.receivedData[control])
+      // FIX TODO
+      if (control !== 'notes') {
+        controls[control].setValue(this.receivedData[control])
+      } else {
+        controls[control].value.forEach( el => {
+          el.note = this.receivedData[control]
+          console.log(el.note);
+        })
+      }
     })
   }
 
@@ -85,9 +106,9 @@ export class SchoolDiaryDetailsComponent implements OnInit {
     this.studentDetails.get('phoneNumber').valueChanges.subscribe(val => {
       this.phoneNumber = val;
     });
-    this.studentDetails.get('notes').valueChanges.subscribe(val => {
-      this.notes = val;
-    });
+    // this.studentDetails.get('notes').valueChanges.subscribe(val => {
+    //   this.notes = val;
+    // });
   }
 
   saveStudentProfile() {

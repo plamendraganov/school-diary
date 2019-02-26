@@ -10,7 +10,14 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        notes: '' 
+        notes: [ 
+            { 
+              note: 'I am a boxer' 
+            },
+            {
+              note: 'I am a teacher'
+            }
+        ]
     },
     {
         number: 2,
@@ -19,7 +26,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        notes: '' 
+        notes: [ { note: '' } ]
     },
     {
         number: 3,
@@ -28,7 +35,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        notes: '' 
+        notes: [ { note: '' } ]
     },
     {
         number: 4,
@@ -37,7 +44,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        notes: '' 
+        notes: [ { note: '' } ]
     },
     {
         number: 5,
@@ -46,7 +53,7 @@ const initialState: IStudentData[] = [
         age: 15,
         address: 'London',
         phoneNumber: '089348423432',
-        notes: '' 
+        notes: [ { note: '' } ]
     }
 ]
 
