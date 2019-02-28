@@ -72,6 +72,7 @@ export class AddNewStudentComponent implements OnInit {
   }
 
   addNewNote(): void {
+    //test
     const noteValue = this.notes.value[this.notes.length - 1].note;
 
     if (noteValue && noteValue.trim() !== '') {
